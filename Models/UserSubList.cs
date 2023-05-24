@@ -2,14 +2,10 @@
 {
     public class UserSubList
     {
-        private static int counter = 0;
-        public int id { get; private set; }
+        public int id { get; set; }
+        public string name { get; set; }
         public string url { get; set; }
         public DateTime updateTime { get; set; }
-        public UserSubList()
-        {
-            counter++;
-            id = counter;
-        }
+
     }
 }

@@ -18,5 +18,7 @@ RUN dotnet publish "TGbot_RssFeed.csproj" -c Release -o /app/publish /p:UseAppHo
 
 FROM base AS final
 WORKDIR /app
+RUN mkdir Sub
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TGbot_RssFeed.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet TGbot_RssFeed.dll
