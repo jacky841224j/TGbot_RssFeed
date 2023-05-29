@@ -188,7 +188,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
                 int num;
                 if (int.TryParse(text[1], out num))
                 {
-                    if (await controller.Delete(chatId, num) is OkResult)
+                    if (await controller.Delete(chatId, num) is OkObjectResult)
                     {
                         sentMessage = await botClient.SendTextMessageAsync(
                             chatId: chatId,
