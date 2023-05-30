@@ -54,12 +54,12 @@ namespace TGbot_RssFeed
                         reader.Close();
 
                         //判斷通知時間為
-                        foreach (var item in feed.Items.Where(o => o.PublishDate.DateTime >= ul.updateTime).ToList())
+                        foreach (var item in feed.Items.Where(o => TimeZoneInfo.ConvertTimeFromUtc(o.PublishDate.DateTime, targetTimeZone) >= ul.updateTime).ToList())
                         {
                             InlineList.Add(new[] { InlineKeyboardButton.WithUrl(item.Title.Text, item.Links[0].Uri.ToString()) });
                         }
 
-                        if(InlineList.Count > 0)
+                        if(InlineList.Any())
                         {
                             InlineKeyboardMarkup inlineKeyboard = new(InlineList);
                             await botClient.SendTextMessageAsync(
